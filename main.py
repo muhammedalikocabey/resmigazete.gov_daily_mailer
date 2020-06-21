@@ -2,7 +2,7 @@
 """
 Created on Sat Jun 20 19:44:52 2020
 
-@author: muham
+@author: Muhammed Ali Kocabey
 """
 
 
@@ -45,17 +45,16 @@ gunluk_akis = browser.find_element_by_xpath(gunluk_akis_xpath)
 
 
 html_content = browser.execute_script("return arguments[0].outerHTML;", gunluk_akis)
-html_content = html_content.replace("""<hr> Resmî Gazete'nin kurumsal mobil uygulaması Android ve Apple marketlerde "T.C. Resmî Gazete" adıyla yerini almıştır. <hr>""", "")
 html_content = html_content.strip()
 
-developer_html = """<br/><br/><hr style="width:75%;text-align:left;margin: 0 auto">
+developer_info_html = """<br/><br/><hr style="width:75%;text-align:left;margin: 0 auto">
 <center><br/><small><a href="https://www.sinerjik.org/resmi-gazete-e-posta-hizmeti/" target="_blank">Resmi Gazete E-Posta Hizmeti</a>, ticari amaç gütmeyen ücretsiz bir hizmettir.<br/> Geliştirici: <strong><a href="https://www.muhammedalikocabey.com/hakkimda/" target="_blank"> Muhammed Ali KOCABEY</a></strong>  |  Fikir: <a href="https://www.sinerjik.org/hakkinda/furkan-guven-tastan/" target="_blank"><strong>Furkan Güven TAŞTAN</strong></a></small><br/><br/><hr style="width:75%;text-align:left;margin: 0 auto">
 <br/><small>Mail listesinden ayrılmak için <a href="https://sinerjik.us10.list-manage.com/unsubscribe?u=b91b7e9fb96346dee295ef820&id=b4bc9cb5af">tıklayınız.</a></small>
 """
-developer_html = developer_html.strip()
+developer_info_html = developer_info_html.strip()
 
 
-html_content = html_content + " " + developer_html
+html_content = html_content + " " + developer_info_html
 
 
 browser.close()
@@ -64,9 +63,9 @@ browser.close()
 #%%     Get Mail List
 from mailchimp3 import MailChimp
 
-client = MailChimp(mc_api="2d88b44f09e8f52291d63056e0e2032d-us10", mc_user="sinerjik")
+client = MailChimp(mc_api="MAILCHIMP_API_KEY", mc_user="MAILCHIMP_USER_NAME")
 
-subscribers = (client.lists.members.all('b4bc9cb5af', get_all=True, fields="members.email_address"))["members"]
+subscribers = (client.lists.members.all('MAILCHIMP_LIST_ID', get_all=True, fields="members.email_address"))["members"]
 
 recipients = [str(i["email_address"]) for i in subscribers]
 
@@ -80,21 +79,21 @@ from email.mime.text import MIMEText
 
 
 
-SENDER_USERNAME = "resmigazete@sinerjik.org"
-SENDER_PASSWORD = "?Ak7$Yz5"
+SENDER_USERNAME = "SENDER@DOMAIN.COM"
+SENDER_PASSWORD = "SENDER_MAIL_PASSWORD"
 
 
 
 for receiver in recipients:
     msg = MIMEMultipart()
-    msg['From'] = "Resmi Gazete <resmigazete@sinerjik.org>"
+    msg['From'] = "SENDER NAME <SENDER@DOMAIN.COM>"
     msg['To'] = receiver
     msg['Subject'] = tarih
     
     part1 = MIMEText(html_content, 'html')
     msg.attach(part1)
     
-    mailserver = smtplib.SMTP('webmail.sinerjik.org',587)
+    mailserver = smtplib.SMTP('MAILHOSTING.DOMAIN.COM',587)
     # identify ourselves to smtp gmail client
     mailserver.ehlo()
     # secure our email with tls encryption
