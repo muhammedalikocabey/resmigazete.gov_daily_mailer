@@ -28,7 +28,7 @@ Yardım ve sorularınız için mail adresimden [me@muhammedalikocabey.com](mailt
 
 
 # EN
-## Scraping Resmigazete.gov.tr Data Daily and Sending Mail to Registered Subscribers
+## Scraping resmigazete.gov.tr Data Daily and Sending Mail to Registered Subscribers
 
 
 *** Thanks to its establishment on Herokuapp and Heroku Scheduler, it sends the official newspaper via web scraping at 05.00 and sends mail to its registered subscribers. ***
