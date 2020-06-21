@@ -45,7 +45,7 @@ Günlük Akış      =     //div[@id='gunluk-akis']
 
 You can find the element properties that are suitable for the website where you will pull data with the option "Examine".
 
-Click here to sign up for the mailing list. [my blog](https://www.sinerjik.org/resmi-gazete-e-posta-hizmeti/)
+[Click here](https://www.sinerjik.org/resmi-gazete-e-posta-hizmeti/) to sign up for the mailing list.
 
 You can browse my [website](https://www.muhammedalikocabey.com/blog) for more.
 
